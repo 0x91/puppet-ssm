@@ -58,10 +58,7 @@ class ssm::service(
           ensure    => $service_ensure,
           hasstatus  => true,
           hasrestart => true,
-          restart    => "/sbin/restart ${service_name}",
-          start      => "/sbin/start ${service_name}",
-          status     => "/sbin/status ${service_name}",
-          stop       => "/sbin/stop ${service_name}",
+          provider  => 'upstart',
           subscribe => Package['amazon-ssm-agent'],
           require   => Class['ssm::install'],
         }
